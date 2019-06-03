@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UITabBar.appearance().tintColor = .black
+
+        FirebaseApp.configure()
+        self.splashScreen()
         return true
+    }
+    
+    private func splashScreen(){
+        let launchScreenVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
+        let rootVC = launchScreenVC.instantiateViewController(withIdentifier: "splashController")
+        self.window?.rootViewController = rootVC
+        self.window?.makeKeyAndVisible()
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(dimissSplashController), userInfo: nil, repeats: false)
+        
+    }
+    
+    @objc func dimissSplashController(){
+        //signInPage
+        let mainVC = UIStoryboard.init(name: "Start", bundle: nil)
+         let rootVC = mainVC.instantiateViewController(withIdentifier: "signInPage")
+        self.window?.rootViewController = rootVC
+        self.window?.makeKeyAndVisible()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

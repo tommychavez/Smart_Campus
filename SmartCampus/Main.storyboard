@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="LMu-ra-wfk">
+            <objects>
+                <tabBarController storyboardIdentifier="TapBar" id="EFK-zi-mDK" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QT3-ki-jmN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="XE8-16-9BO" kind="relationship" relationship="viewControllers" id="yjL-U3-bg9"/>
+                        <segue destination="0Ip-gP-YfW" kind="relationship" relationship="viewControllers" id="ob6-yD-a1h"/>
+                        <segue destination="Ozl-Fu-lxd" kind="relationship" relationship="viewControllers" id="Pkt-4F-gzO"/>
+                        <segue destination="qpX-OD-XRX" kind="relationship" relationship="viewControllers" id="WAi-5p-sVD"/>
+                        <segue destination="CsN-JH-RY5" kind="relationship" relationship="viewControllers" id="FQz-8d-aUe"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0AL-5A-nFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1241" y="-2248"/>
+        </scene>
+        <!--navigationHome-->
+        <scene sceneID="hgc-bv-KKt">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="navigationHome" id="XE8-16-9BO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="HomeView" landscapeImage="HomeView" selectedImage="HomeView" id="Xlo-vC-ZyS"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7HH-ha-uvO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2296.8000000000002" y="-3018.440779610195"/>
+        </scene>
+        <!--navigationSearch-->
+        <scene sceneID="WcK-px-bhs">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="navigationSearch" id="0Ip-gP-YfW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="SearchView" landscapeImage="SearchView" selectedImage="SearchView" id="vGB-bK-uEt"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uHa-uW-WXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2215" y="-2623"/>
+        </scene>
+        <!--postStoryboard-->
+        <scene sceneID="6ci-iT-PXV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="post" referencedIdentifier="postStoryboard" id="Ozl-Fu-lxd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="PostView" landscapeImage="PostView" selectedImage="PostView" id="WbF-H8-t49"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="laM-Uh-xKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2294" y="-2565"/>
+        </scene>
+        <!--navigationMessages-->
+        <scene sceneID="bU1-k6-RlL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Messages" referencedIdentifier="navigationMessages" id="qpX-OD-XRX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="MessageView" landscapeImage="MessageView" selectedImage="MessageView" id="Pkr-AO-ewR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VS4-YL-Ns8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2215" y="-2451"/>
+        </scene>
+        <!--navigationProfile-->
+        <scene sceneID="ODe-gD-QKf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="navigationProfile" id="CsN-JH-RY5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="ProfileView" landscapeImage="ProfileView" selectedImage="ProfileView" id="b7P-Zq-pzW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B7w-fA-Phf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2213" y="-2277"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="HomeView" width="30" height="30"/>
+        <image name="MessageView" width="30" height="30"/>
+        <image name="PostView" width="30" height="30"/>
+        <image name="ProfileView" width="30" height="30"/>
+        <image name="SearchView" width="30" height="30"/>
+    </resources>
+</document>

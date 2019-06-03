@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Untitled Diagram.jpg</string>
+	</array>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>232139902879-tn2n9ce8qs7cmqjlftjr41tvmvkofrcq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.232139902879-tn2n9ce8qs7cmqjlftjr41tvmvkofrcq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBlq8bfWq6iCtrN87Izs0iRwpnayOyydWg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>232139902879</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Tomas-Chavez.SmartCampus</string>
+	<key>PROJECT_ID</key>
+	<string>collegeproj-284af</string>
+	<key>STORAGE_BUCKET</key>
+	<string>collegeproj-284af.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:232139902879:ios:cd2a8768b1604b03</string>
+	<key>DATABASE_URL</key>
+	<string>https://collegeproj-284af.firebaseio.com</string>
+</dict>
+</plist>
