@@ -21,8 +21,19 @@ protocol newsCellDelegate {
 var id = ""
 var posts = [Post]()
 
-
 class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate , CLLocationManagerDelegate{
+    
+    
+    var switchison = true
+    
+    @IBAction func `switch`(_ sender: Any) {
+        if((sender as AnyObject).isOn == true){
+            
+        }
+        else {
+            
+        }
+    }
     
     @IBAction func pressSpart(_ sender: Any) {
         let centerspot: CLLocationCoordinate2D = CLLocationCoordinate2DMake( 37.334970, -121.882946)
@@ -43,6 +54,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
        posts.removeAll() // log back in works & not added elemtns to posts
         self.tabBarController?.tabBar.barTintColor = UIColor.black //worked
         map.delegate = self //remember
+        
         makeMap()
        // let camera = MKMapCamera()
         let centerspot: CLLocationCoordinate2D = CLLocationCoordinate2DMake( 37.334970, -121.882946)
@@ -58,7 +70,9 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
         print(posts.count)
         tableView.delegate = self
        // tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        checkLocationServices()
+//        checkLocationServices()
+//        let location = locationManager.location?.coordinate
+//        print(location!)
     
     }
    
@@ -91,7 +105,9 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
-            
+            //map.showsUserLocation = true
+           // centerViewOnUserLocation()
+            locationManager.startUpdatingLocation()
             break
         case .denied:
             // Show alert instructing them how to turn on permissions
@@ -105,6 +121,9 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
             break
         }
     }
+
+
+
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -122,6 +141,11 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
     func makeMap(){
         //   self.map.showsBuildings = true
         
+        checkLocationServices()
+        let myLoca = locationManager.location?.coordinate
+        print("My Location: ")
+        print(myLoca!)
+
         let span : MKCoordinateSpan = MKCoordinateSpan (latitudeDelta: 0.008, longitudeDelta: 0.008)
         
         let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake( 37.3352, -121.8811)
@@ -184,7 +208,12 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
         annotation9.coordinate = food
         annotation9.title = "Student Union"
         map.addAnnotation(annotation9)
-        //  MKMapView.showsUserLocation = YES
+        
+        
+        let annotation10 = MKPointAnnotation()
+        annotation10.coordinate = myLoca!
+        annotation10.title = "My Location"
+        map.addAnnotation(annotation10)        //  map.showsUserLocation = true
     }
     
     
@@ -243,6 +272,10 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
         
         if let title = annotation.title, title == "Student Union"{
             annotationView?.image = UIImage(named: "food") //beer
+        }
+        
+        if let title = annotation.title, title == "My Location"{
+            annotationView?.image = UIImage(named: "walkingguy") //beer
         }
         
         

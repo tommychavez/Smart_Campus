@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jBf-As-5TN">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jBf-As-5TN">
                                 <rect key="frame" x="0.0" y="64" width="375" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="375" id="KmK-Jv-OOH"/>
@@ -70,13 +70,26 @@
                                     <action selector="pressSpart:" destination="Cvh-Ax-VBR" eventType="touchUpInside" id="iGq-Ui-bcn"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i5w-0S-X66">
+                                <rect key="frame" x="0.0" y="64" width="49" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="bcM-B7-exk"/>
+                                    <constraint firstAttribute="width" constant="47" id="j51-eA-oIj"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="switch:" destination="Cvh-Ax-VBR" eventType="valueChanged" id="KBp-us-U2D"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Tb4-F6-TqN" firstAttribute="trailing" secondItem="i5w-0S-X66" secondAttribute="trailing" constant="328" id="70j-nJ-8Wz"/>
                             <constraint firstItem="AK2-ug-9HA" firstAttribute="top" secondItem="Tb4-F6-TqN" secondAttribute="top" constant="212" id="BPP-vO-bHg"/>
                             <constraint firstItem="jBf-As-5TN" firstAttribute="trailing" secondItem="Tb4-F6-TqN" secondAttribute="trailing" id="DrJ-7p-0Vc"/>
                             <constraint firstItem="6DK-ur-dKD" firstAttribute="trailing" secondItem="Tb4-F6-TqN" secondAttribute="trailing" id="JkD-MC-0Gh"/>
                             <constraint firstItem="jBf-As-5TN" firstAttribute="centerX" secondItem="pX2-WC-CFe" secondAttribute="centerX" id="Pxd-Eh-gqa"/>
+                            <constraint firstItem="i5w-0S-X66" firstAttribute="leading" secondItem="Tb4-F6-TqN" secondAttribute="leading" id="QlD-gw-LTJ"/>
+                            <constraint firstItem="i5w-0S-X66" firstAttribute="top" secondItem="Tb4-F6-TqN" secondAttribute="top" id="Tmf-Xt-W7n"/>
                             <constraint firstItem="QRd-fW-ywC" firstAttribute="leading" secondItem="Tb4-F6-TqN" secondAttribute="leading" constant="127" id="UbQ-zw-6LL"/>
                             <constraint firstItem="jBf-As-5TN" firstAttribute="trailing" secondItem="Tb4-F6-TqN" secondAttribute="trailing" id="XR5-8p-Cf0"/>
                             <constraint firstItem="AK2-ug-9HA" firstAttribute="trailing" secondItem="Tb4-F6-TqN" secondAttribute="trailing" id="XU9-ng-905"/>
@@ -90,6 +103,7 @@
                             <constraint firstItem="jBf-As-5TN" firstAttribute="centerY" secondItem="pX2-WC-CFe" secondAttribute="centerY" id="qzT-qS-dio"/>
                             <constraint firstItem="Tb4-F6-TqN" firstAttribute="trailing" secondItem="QRd-fW-ywC" secondAttribute="trailing" constant="127" id="rzq-Nj-uIN"/>
                             <constraint firstItem="6DK-ur-dKD" firstAttribute="top" secondItem="QRd-fW-ywC" secondAttribute="bottom" id="tQC-iM-CIO"/>
+                            <constraint firstItem="6DK-ur-dKD" firstAttribute="top" secondItem="i5w-0S-X66" secondAttribute="bottom" constant="219" id="tgx-mG-8qO"/>
                             <constraint firstItem="6DK-ur-dKD" firstAttribute="top" secondItem="jBf-As-5TN" secondAttribute="bottom" id="xFn-U3-Tyj"/>
                             <constraint firstItem="jBf-As-5TN" firstAttribute="leading" secondItem="Tb4-F6-TqN" secondAttribute="leading" id="yFW-pN-XYN"/>
                         </constraints>
@@ -104,6 +118,17 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="SMART CAMPUS" id="b2A-bk-Kvz">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="gwx-JC-agf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" id="ErF-IC-JYn">
+                                <rect key="frame" x="16" y="0.0" width="83" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <string key="title">MY 
+LOCATION</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="calendar" id="X57-N0-zue">
                             <connections>
                                 <segue destination="ro7-O6-UrD" kind="push" id="VVg-th-q4D"/>

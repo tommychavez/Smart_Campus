@@ -27,11 +27,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We'd like to access to your camera</string>
+	<string>We&apos;d like to access to your camera</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Use Face ID instead of a password to access your account.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We'd like access to your photos right now. </string>
+	<string>We&apos;d like access to your photos right now. </string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Would you like to share location when in use?</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
