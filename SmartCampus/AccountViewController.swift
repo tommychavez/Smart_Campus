@@ -28,12 +28,48 @@ class AccountViewController: UIViewController {
         return imageView
     }()
     
+    let friendButton: UIButton = {
+        let nameImage: UIButton = UIButton(frame: CGRect(x: 275, y: 100, width: 100.00, height: 35));
+       // let nameImage = UIButton()
+        nameImage.translatesAutoresizingMaskIntoConstraints = false
+        nameImage.layer.masksToBounds = true
+       // nameImage.backgroundColor = UIColor.yellow
+        nameImage.contentMode = .scaleAspectFill
+        nameImage.setTitleColor( UIColor.black, for: .normal )
+       // nameImage.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        nameImage.titleLabel?.numberOfLines = 2
+         nameImage.titleLabel?.lineBreakMode = .byWordWrapping
+       // nameImage.contentHorizontalAlignment = .left
+          nameImage.setTitle("10      Friends", for: .normal)
+        //  buttonView.backgroundColor = UIColor.blue
+        return nameImage
+    }()
+    
+    let locationFavButton: UIButton = {
+        let nameImage: UIButton = UIButton(frame: CGRect(x: 275, y: 140, width: 100.00, height: 35));
+        // let nameImage = UIButton()
+        nameImage.translatesAutoresizingMaskIntoConstraints = false
+        nameImage.layer.masksToBounds = true
+       // nameImage.backgroundColor = UIColor.yellow
+        nameImage.contentMode = .scaleAspectFill
+        nameImage.setTitleColor( UIColor.black, for: .normal )
+        // nameImage.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        nameImage.titleLabel?.numberOfLines = 2
+        nameImage.titleLabel?.lineBreakMode = .byWordWrapping
+       // nameImage.contentHorizontalAlignment = .left
+        nameImage.setTitle("10 Locations", for: .normal)
+        //  buttonView.backgroundColor = UIColor.blue
+        return nameImage
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Friend", style: .plain, target: self, action: #selector(handleFriend))
         navigationItem.title = name
         self.view.addSubview(tableView)
         tableView.register(newsCell.self, forCellReuseIdentifier: cellId)
@@ -41,6 +77,8 @@ class AccountViewController: UIViewController {
         loadPosts()
         tableView.rowHeight = 450
        self.view.addSubview(profileImageViewTop)
+         self.view.addSubview(friendButton)
+       self.view.addSubview(locationFavButton)
         profileImageViewTop.image = profilePicture
         print("NAME")
         print(name)
@@ -52,6 +90,10 @@ class AccountViewController: UIViewController {
     }
     
     @objc func handleCancel() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleFriend() {
         dismiss(animated: true, completion: nil)
     }
     

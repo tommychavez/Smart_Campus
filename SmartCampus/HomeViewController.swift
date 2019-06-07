@@ -28,10 +28,10 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
     
     @IBAction func `switch`(_ sender: Any) {
         if((sender as AnyObject).isOn == true){
-            
+           switchison = true
         }
         else {
-            
+            switchison = false
         }
     }
     
@@ -144,7 +144,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
         checkLocationServices()
         let myLoca = locationManager.location?.coordinate
         print("My Location: ")
-        print(myLoca!)
+        print(myLoca ?? "")
 
         let span : MKCoordinateSpan = MKCoordinateSpan (latitudeDelta: 0.008, longitudeDelta: 0.008)
         
@@ -157,6 +157,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
         let DT: CLLocationCoordinate2D = CLLocationCoordinate2DMake( 37.335277, -121.887450)
            let parking: CLLocationCoordinate2D = CLLocationCoordinate2DMake( 37.333122, -121.880776)
           let food: CLLocationCoordinate2D = CLLocationCoordinate2DMake( 37.336426, -121.880840)
+         let fakeLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake( 37.335558, -121.879256)
         
         let region: MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
         map.setRegion(region, animated: false)
@@ -211,7 +212,9 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
         
         
         let annotation10 = MKPointAnnotation()
-        annotation10.coordinate = myLoca!
+        //annotation10.coordinate = myLoca!
+        annotation10.coordinate = fakeLocation
+        
         annotation10.title = "My Location"
         map.addAnnotation(annotation10)        //  map.showsUserLocation = true
     }
@@ -273,11 +276,12 @@ class HomeViewController: UIViewController, MKMapViewDelegate, UITableViewDelega
         if let title = annotation.title, title == "Student Union"{
             annotationView?.image = UIImage(named: "food") //beer
         }
-        
+       
+        if(switchison){
         if let title = annotation.title, title == "My Location"{
             annotationView?.image = UIImage(named: "walkingguy") //beer
         }
-        
+    }
         
         annotationView?.canShowCallout = true
         return annotationView
