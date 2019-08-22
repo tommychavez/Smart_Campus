@@ -9,7 +9,10 @@ class Post {
     var likedby: Bool
     var postID: String
     var postCount: Int
-    init(captionText: String, photoURLString: String, USERNAME: String, locationText: String, likes: Int, likedbyme: Bool, postid: String, postcount: Int){
+    var audio64: String
+    var posttime: TimeInterval
+ 
+    init(captionText: String, photoURLString: String, USERNAME: String, locationText: String, likes: Int, likedbyme: Bool, postid: String, postcount: Int, Audio64: String, postTime: TimeInterval){
    // init(captionText: String, photoURLString: String){
       caption = captionText
       imageUrl = photoURLString
@@ -19,5 +22,7 @@ class Post {
       likedby = likedbyme
       postID = postid
       postCount = postcount
+      audio64 = Audio64
+        posttime = postTime
     }
 }
