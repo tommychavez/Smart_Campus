@@ -8,37 +8,59 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import LocalAuthentication
 import SwiftKeychainWrapper
 
 class SignInViewController: UIViewController {
-
+    
+    @IBOutlet weak var titleLabel: UITextView!
     @IBOutlet weak var emailTextfield: UITextField!
     
     @IBOutlet weak var passwordTextfield: UITextField!
     
     @IBOutlet weak var signInButton: UIButton!
     
-//    let saveSuccessful: Bool = KeychainWrapper.standard.set("Some String", forKey: "myKey")
-
+    //    let saveSuccessful: Bool = KeychainWrapper.standard.set("Some String", forKey: "myKey")
+    
     var context = LAContext()
+    
+    
+    var myString:NSString = "WRUD";
+    var myMutableString = NSMutableAttributedString()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        state = .loggedout
-
-//       signInButton.isEnabled = true
+        //state = .loggedout
+        
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                self.performSegue(withIdentifier: "signIntoTabbar", sender: nil)
+            } else {
+                // No user is signed in.
+            }
+        }//https://stackoverflow.com/questions/37536499/how-to-maintain-user-session-after-exiting-app-in-firebase
+        //        let colorRed: UIColor? = titleLabel.textColor
+//        titleLabel.layer.shadowColor = colorRed?.cgColor
+//        titleLabel.layer.shadowRadius = 4.0
+//        titleLabel.layer.shadowOpacity = 0.9
+//        titleLabel.layer.shadowOffset = CGSize.zero
+//        titleLabel.layer.masksToBounds = false
+       
+ titleLabel.setTextWithTypeAnimation(typedText:"WRUD", characterDelay:  100) //less delay is faster
+       
+        //       signInButton.isEnabled = true
         
         // Do any additional setup after loading the view.
-   // return
-    
+        // return
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
-
+    
     private func showLoginFailedAlert() {
         let alertView = UIAlertController(title: "Login Problem",
                                           message: "Wrong username or password.",
@@ -56,12 +78,12 @@ class SignInViewController: UIViewController {
         // Update the UI on a change.
         didSet {
             signInButton.isHighlighted = state == .loggedin  // The button text changes on highlight.
-//            stateView.backgroundColor = state == .loggedin ? .green : .red
+            //            stateView.backgroundColor = state == .loggedin ? .green : .red
             
             // FaceID runs right away on evaluation, so you might want to warn the user.
             //  In this app, show a special Face ID prompt if the user is logged out, but
             //  only if the device supports that kind of authentication.
-//            faceIDLabel.isHidden = (state == .loggedin) || (context.biometryType != .faceID)
+            //            faceIDLabel.isHidden = (state == .loggedin) || (context.biometryType != .faceID)
         }
     }
     
@@ -118,12 +140,38 @@ class SignInViewController: UIViewController {
         }
     }
     @IBAction func singInButtonContr(_ sender: Any) {
-        guard let email = emailTextfield.text, !email.isEmpty else { return }
-        guard let password = passwordTextfield.text, !password.isEmpty else { return }
+        guard let email = emailTextfield.text, !email.isEmpty else {
+            print("return here")
+            return }
+        guard let password = passwordTextfield.text, !password.isEmpty else {
+            print("return here")
+            return
+            
+        }
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, err) in
             if let err = err {
                 print("Failed to sign in with email:", err)
+                self.presentAlertWithTitle(title: "Warning", message: "The email address does not match the password", options: "Okay") { (option) in
+                    print("option: \(option)")
+                    switch(option) {
+                    case 0:
+                        print("option one")
+                        break
+                    //  return
+                    case 1:
+                        print("option two")
+                        break
+                    //return
+                    default:
+                        print("option two")
+                        break
+                    }
+                }
+                
+                
+                
                 return
+                
             }
             
             print("Successfully logged back in with user:", user?.user.uid ?? "")
@@ -136,17 +184,17 @@ class SignInViewController: UIViewController {
             self.performSegue(withIdentifier: "signIntoTabbar", sender: nil)
         })
     }
-   
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
     private func login(){
         guard let email = emailTextfield.text, !email.isEmpty else { return }
         guard let password = passwordTextfield.text, !password.isEmpty else { return }
@@ -169,3 +217,4 @@ class SignInViewController: UIViewController {
         })
     }
 }
+

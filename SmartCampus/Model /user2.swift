@@ -7,3 +7,18 @@
 //
 
 import Foundation
+class User2 {
+ 
+    var profileimageurl: String
+    var usersname: String
+    var usersid: String
+    
+    init(profileImageUrl: String, usersName: String, usersId: String){
+        
+        profileimageurl = profileImageUrl
+        usersname = usersName
+        usersid = usersId
+        
+    }
+    
+}

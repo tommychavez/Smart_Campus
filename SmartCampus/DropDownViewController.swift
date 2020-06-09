@@ -33,7 +33,16 @@ class DropDownViewController: UIViewController, UITableViewDelegate, UITableView
         Popupview.layer.cornerRadius = 10
         Popupview.layer.masksToBounds = true
        // tableView.delegate = self
-    }
+   
+              AppUtility.lockOrientation(.portrait)
+        }
+            
+            override func viewWillDisappear(_ animated: Bool) {
+                super.viewWillDisappear(animated)
+
+                // Don't forget to reset when view is being removed
+                AppUtility.lockOrientation(.all)
+            }
     
 
     

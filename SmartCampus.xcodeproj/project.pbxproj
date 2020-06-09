@@ -31,12 +31,19 @@
 		51321AC621E731C60053EDE8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51321AC521E731C50053EDE8 /* GoogleService-Info.plist */; };
 		5137B86A225EED3500DB7183 /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5137B869225EED3500DB7183 /* DropDownViewController.swift */; };
 		5137B86C225EF66400DB7183 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5137B86B225EF66400DB7183 /* Shared.swift */; };
-		5137B86F225FE08900DB7183 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5137B86E225FE08900DB7183 /* Post.swift */; };
+		5137B86F225FE08900DB7183 /* image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5137B86E225FE08900DB7183 /* image.swift */; };
 		5138C01B227C090800E80213 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5138C01A227C090700E80213 /* AccountViewController.swift */; };
 		51C29A4D2273E03400AE9E96 /* annotatedpoint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C29A4C2273E03300AE9E96 /* annotatedpoint.storyboard */; };
 		51F9A0BD226BC47100AF997B /* NewMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F9A0BC226BC47100AF997B /* NewMessageTableViewController.swift */; };
 		51F9A0BF226BCE4200AF997B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F9A0BE226BCE4100AF997B /* Users.swift */; };
 		51F9A0C3226D794D00AF997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F9A0C2226D794D00AF997B /* Extensions.swift */; };
+		6506995222EB5EF800C436A2 /* user2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6506995122EB5EF800C436A2 /* user2.swift */; };
+		65F5FDEC22B2F9C300B49046 /* friendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F5FDEB22B2F9C200B49046 /* friendsList.swift */; };
+		65F6CBF522B8B18300ED671A /* commeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F6CBF422B8B18300ED671A /* commeList.swift */; };
+		65F6CBF722BB64FE00ED671A /* videofilecontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F6CBF622BB64FE00ED671A /* videofilecontroller.swift */; };
+		65F729BA22CFC39D007BDA2A /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F729B922CFC39D007BDA2A /* MapAnnotation.swift */; };
+		65F729BC22D5C00C007BDA2A /* newEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F729BB22D5C00C007BDA2A /* newEventController.swift */; };
+		65F729BE22D910A8007BDA2A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F729BD22D910A8007BDA2A /* Event.swift */; };
 		8BBCFA312282FBBF00AB5C09 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCFA302282FBBF00AB5C09 /* ChatLogController.swift */; };
 		8BBCFA362282FCCF00AB5C09 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCFA352282FCCF00AB5C09 /* ChatMessageCell.swift */; };
 		8BBCFA382282FCEA00AB5C09 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCFA372282FCEA00AB5C09 /* ChatInputContainerView.swift */; };
@@ -45,11 +52,14 @@
 		97C3EDD1228949070003817F /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C3EDCE228949070003817F /* Calendar.storyboard */; };
 		97C3EDD2228949070003817F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C3EDCF228949070003817F /* CalendarViewController.swift */; };
 		97C3EDD3228949070003817F /* CalendarViewPageOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C3EDD0228949070003817F /* CalendarViewPageOne.swift */; };
+		F70C97F222FC83F000EB5433 /* practiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C97F122FC83F000EB5433 /* practiceViewController.swift */; };
+		F70C97F62301E29900EB5433 /* OnePostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C97F52301E29900EB5433 /* OnePostTableViewController.swift */; };
+		F70C97F82308799300EB5433 /* editProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C97F72308799300EB5433 /* editProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		51024AB522975A2F000FDC72 /* post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = post.storyboard; sourceTree = "<group>"; };
-		5114DEB72187C61C00E5CA2B /* SmartCampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartCampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5114DEB72187C61C00E5CA2B /* Smart Campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Campus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5114DEBA2187C61C00E5CA2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5114DEC12187C62000E5CA2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5114DEC42187C62000E5CA2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,12 +83,20 @@
 		51321AC521E731C50053EDE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5137B869225EED3500DB7183 /* DropDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
 		5137B86B225EF66400DB7183 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
-		5137B86E225FE08900DB7183 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		5137B86E225FE08900DB7183 /* image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = image.swift; sourceTree = "<group>"; };
 		5138C01A227C090700E80213 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		51C29A4C2273E03300AE9E96 /* annotatedpoint.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = annotatedpoint.storyboard; sourceTree = "<group>"; };
 		51F9A0BC226BC47100AF997B /* NewMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageTableViewController.swift; sourceTree = "<group>"; };
 		51F9A0BE226BCE4100AF997B /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		51F9A0C2226D794D00AF997B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6506995122EB5EF800C436A2 /* user2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user2.swift; sourceTree = "<group>"; };
+		65F5FDE522AE02C800B49046 /* SmartCampus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartCampus-Bridging-Header.h"; sourceTree = "<group>"; };
+		65F5FDEB22B2F9C200B49046 /* friendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = friendsList.swift; sourceTree = "<group>"; };
+		65F6CBF422B8B18300ED671A /* commeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commeList.swift; sourceTree = "<group>"; };
+		65F6CBF622BB64FE00ED671A /* videofilecontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = videofilecontroller.swift; sourceTree = "<group>"; };
+		65F729B922CFC39D007BDA2A /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		65F729BB22D5C00C007BDA2A /* newEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newEventController.swift; sourceTree = "<group>"; };
+		65F729BD22D910A8007BDA2A /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		6EAF957328691FB6C25D22EA /* Pods_SmartCampus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartCampus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BBCFA302282FBBF00AB5C09 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		8BBCFA352282FCCF00AB5C09 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
@@ -89,6 +107,9 @@
 		97C3EDCE228949070003817F /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		97C3EDCF228949070003817F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		97C3EDD0228949070003817F /* CalendarViewPageOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewPageOne.swift; sourceTree = "<group>"; };
+		F70C97F122FC83F000EB5433 /* practiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practiceViewController.swift; sourceTree = "<group>"; };
+		F70C97F52301E29900EB5433 /* OnePostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePostTableViewController.swift; sourceTree = "<group>"; };
+		F70C97F72308799300EB5433 /* editProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editProfileViewController.swift; sourceTree = "<group>"; };
 		F98D5112D6264A946C6A1499 /* Pods-SmartCampus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCampus.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartCampus/Pods-SmartCampus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,7 +139,7 @@
 		5114DEB82187C61C00E5CA2B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5114DEB72187C61C00E5CA2B /* SmartCampus.app */,
+				5114DEB72187C61C00E5CA2B /* Smart Campus.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,17 +153,24 @@
 				5137B86D225FDF6E00DB7183 /* Model  */,
 				511CA8CB21F146210031C1D7 /* PhotoSelectorController.swift */,
 				51F9A0C1226D790500AF997B /* helpers */,
-				5114DECF21881B9000E5CA2B /* SignInViewController.swift */,
 				51321AAF21E711E40053EDE8 /* HomeViewController.swift */,
+				5114DECF21881B9000E5CA2B /* SignInViewController.swift */,
 				51181F0E227386EF004CD5EF /* AnnotationTableViewController.swift */,
 				5114DED12188211300E5CA2B /* SignUpViewController.swift */,
 				5138C01A227C090700E80213 /* AccountViewController.swift */,
+				65F6CBF622BB64FE00ED671A /* videofilecontroller.swift */,
 				51321AB121E7130B0053EDE8 /* SearchViewController.swift */,
 				97C3EDCC228948950003817F /* ProfileViewController.swift */,
+				65F729BB22D5C00C007BDA2A /* newEventController.swift */,
 				97C3EDCF228949070003817F /* CalendarViewController.swift */,
+				F70C97F72308799300EB5433 /* editProfileViewController.swift */,
 				97C3EDD0228949070003817F /* CalendarViewPageOne.swift */,
+				65F5FDEB22B2F9C200B49046 /* friendsList.swift */,
+				F70C97F122FC83F000EB5433 /* practiceViewController.swift */,
+				65F6CBF422B8B18300ED671A /* commeList.swift */,
 				511CA8C921EFE07E0031C1D7 /* PostPopUpViewController.swift */,
 				5137B869225EED3500DB7183 /* DropDownViewController.swift */,
+				F70C97F52301E29900EB5433 /* OnePostTableViewController.swift */,
 				8BF5F42B2282F7480036D797 /* MessageViewController */,
 				5137B86B225EF66400DB7183 /* Shared.swift */,
 				5114DEC12187C62000E5CA2B /* Assets.xcassets */,
@@ -157,6 +185,7 @@
 				51C29A4C2273E03300AE9E96 /* annotatedpoint.storyboard */,
 				51321AC121E729450053EDE8 /* Messages.storyboard */,
 				5114DEC62187C62000E5CA2B /* Info.plist */,
+				65F5FDE522AE02C800B49046 /* SmartCampus-Bridging-Header.h */,
 			);
 			path = SmartCampus;
 			sourceTree = "<group>";
@@ -174,8 +203,11 @@
 		5137B86D225FDF6E00DB7183 /* Model  */ = {
 			isa = PBXGroup;
 			children = (
-				5137B86E225FE08900DB7183 /* Post.swift */,
+				5137B86E225FE08900DB7183 /* image.swift */,
+				65F729BD22D910A8007BDA2A /* Event.swift */,
 				51F9A0BE226BCE4100AF997B /* Users.swift */,
+				6506995122EB5EF800C436A2 /* user2.swift */,
+				65F729B922CFC39D007BDA2A /* MapAnnotation.swift */,
 				51181F0522718FC8004CD5EF /* Message.swift */,
 			);
 			path = "Model ";
@@ -235,7 +267,7 @@
 			);
 			name = SmartCampus;
 			productName = SmartCampus;
-			productReference = 5114DEB72187C61C00E5CA2B /* SmartCampus.app */;
+			productReference = 5114DEB72187C61C00E5CA2B /* Smart Campus.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -302,24 +334,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SmartCampus/Pods-SmartCampus-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-SmartCampus/Pods-SmartCampus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-SmartCampus/Pods-SmartCampus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -355,10 +374,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F70C97F82308799300EB5433 /* editProfileViewController.swift in Sources */,
+				65F5FDEC22B2F9C300B49046 /* friendsList.swift in Sources */,
+				F70C97F222FC83F000EB5433 /* practiceViewController.swift in Sources */,
 				97C3EDD3228949070003817F /* CalendarViewPageOne.swift in Sources */,
 				5137B86C225EF66400DB7183 /* Shared.swift in Sources */,
+				65F6CBF522B8B18300ED671A /* commeList.swift in Sources */,
+				65F729BE22D910A8007BDA2A /* Event.swift in Sources */,
 				51F9A0C3226D794D00AF997B /* Extensions.swift in Sources */,
+				65F729BC22D5C00C007BDA2A /* newEventController.swift in Sources */,
 				5138C01B227C090800E80213 /* AccountViewController.swift in Sources */,
+				6506995222EB5EF800C436A2 /* user2.swift in Sources */,
 				51181F0622718FC8004CD5EF /* Message.swift in Sources */,
 				97C3EDD2228949070003817F /* CalendarViewController.swift in Sources */,
 				51181F0F227386EF004CD5EF /* AnnotationTableViewController.swift in Sources */,
@@ -368,13 +394,16 @@
 				8BBCFA382282FCEA00AB5C09 /* ChatInputContainerView.swift in Sources */,
 				51181F0922719CBD004CD5EF /* UserCell.swift in Sources */,
 				5137B86A225EED3500DB7183 /* DropDownViewController.swift in Sources */,
-				5137B86F225FE08900DB7183 /* Post.swift in Sources */,
+				F70C97F62301E29900EB5433 /* OnePostTableViewController.swift in Sources */,
+				65F6CBF722BB64FE00ED671A /* videofilecontroller.swift in Sources */,
+				5137B86F225FE08900DB7183 /* image.swift in Sources */,
 				51F9A0BF226BCE4200AF997B /* Users.swift in Sources */,
 				511CA8CA21EFE0820031C1D7 /* PostPopUpViewController.swift in Sources */,
 				97C3EDCD228948950003817F /* ProfileViewController.swift in Sources */,
 				5114DED22188211300E5CA2B /* SignUpViewController.swift in Sources */,
 				5114DED021881B9000E5CA2B /* SignInViewController.swift in Sources */,
 				5114DEBB2187C61C00E5CA2B /* AppDelegate.swift in Sources */,
+				65F729BA22CFC39D007BDA2A /* MapAnnotation.swift in Sources */,
 				8BBCFA312282FBBF00AB5C09 /* ChatLogController.swift in Sources */,
 				51321AB021E711E50053EDE8 /* HomeViewController.swift in Sources */,
 				51321AB621E7134C0053EDE8 /* MessageViewController.swift in Sources */,
@@ -517,15 +546,18 @@
 			baseConfigurationReference = 8EC0FDFA732C3D14375E2DD0 /* Pods-SmartCampus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6WA6Y7KBQJ;
+				DEVELOPMENT_TEAM = X5DNPU6CLN;
 				INFOPLIST_FILE = SmartCampus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Tomas-Chavez.SmartCampus";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Smart Campus";
+				SWIFT_OBJC_BRIDGING_HEADER = "SmartCampus/SmartCampus-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -536,15 +568,17 @@
 			baseConfigurationReference = F98D5112D6264A946C6A1499 /* Pods-SmartCampus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6WA6Y7KBQJ;
+				DEVELOPMENT_TEAM = X5DNPU6CLN;
 				INFOPLIST_FILE = SmartCampus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Tomas-Chavez.SmartCampus";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Smart Campus";
+				SWIFT_OBJC_BRIDGING_HEADER = "SmartCampus/SmartCampus-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

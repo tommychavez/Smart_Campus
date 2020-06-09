@@ -24,12 +24,17 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var plusphotobutton: UIButton!
     
+    @IBOutlet weak var blankbutt: UIButton!
     var selectedImage: UIImage?
      var originalImage: UIImage?
     var editedImage: UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
            checkPermission()
+          plusphotobutton.isEnabled = true; 
+        blankbutt.isHidden = true;
+        blankbutt.isEnabled = false; 
+        
         let textImage = UIImage( named: "no-image-icon-hi.png")
         plusphotobutton.setImage(textImage ,for: .normal)
          plusphotobutton.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
@@ -43,6 +48,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         view.endEditing(true)
     }
     
+    var passid = "";
     @objc func handlePlusPhoto() {
      
         print("123")
@@ -53,14 +59,16 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
+        addprofilepicture.isHidden = true;
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             plusphotobutton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             plusphotobutton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
         
-        plusphotobutton.layer.cornerRadius = plusphotobutton.frame.width/2
+        plusphotobutton.layer.cornerRadius = plusphotobutton.frame.width/2;
+        
+        plusphotobutton.clipsToBounds = true
         plusphotobutton.layer.masksToBounds = true
         plusphotobutton.layer.borderColor = UIColor.black.cgColor
         plusphotobutton.layer.borderWidth = 3
@@ -72,6 +80,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     
+    @IBOutlet weak var addprofilepicture: UILabel!
     func checkPermission() {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch photoAuthorizationStatus {
@@ -104,21 +113,79 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
   
 
     @IBAction func signUpBtn_TouchUpinsde(_ sender: Any) {
-        guard let email = emailTextfield.text, !email.isEmpty else { return }
-        guard let username = usernameTextfield.text, !username.isEmpty else { return }
-        guard let password = passwordTextfield.text, !password.isEmpty else { return }
+        var new_user = false;
+        plusphotobutton.isEnabled = false;
+        guard let email = emailTextfield.text, !email.isEmpty else {
+            
+            self.presentAlertWithTitle(title: "Warning", message: "Required fields left empty.", options: "Okay") { (option) in
+                print("option: \(option)")
+                switch(option) {
+                case 0:
+                    print("option one")
+                    break
+                //  return
+                case 1:
+                    print("option two")
+                    break
+                //return
+                default:
+                    print("option two")
+                    break
+                }
+            }
+            return
+        }
+        guard let username = usernameTextfield.text, !username.isEmpty else {
+            self.presentAlertWithTitle(title: "Warning", message: "Required fields left empty.", options: "Okay") { (option) in
+                print("option: \(option)")
+                switch(option) {
+                case 0:
+                    print("option one")
+                    break
+                //  return
+                case 1:
+                    print("option two")
+                    break
+                //return
+                default:
+                    print("option two")
+                    break
+                }
+            }
+            return }
+        guard let password = passwordTextfield.text, !password.isEmpty else {
+            self.presentAlertWithTitle(title: "Warning", message: "Required fields left empty.", options: "Okay") { (option) in
+                print("option: \(option)")
+                switch(option) {
+                case 0:
+                    print("option one")
+                    break
+                //  return
+                case 1:
+                    print("option two")
+                    break
+                //return
+                default:
+                    print("option two")
+                    break
+                }
+            }
+            return }
         
+        print(email)
+        print(username)
+        print(password)
         Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (authResult, error) in
             // ...
+        
             guard let user = authResult?.user else { return }
-            
             guard let image = self.plusphotobutton.imageView?.image else { return }
             guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
               let filename = NSUUID().uuidString
             Storage.storage().reference().child("profile_images")
             let storageRef = Storage.storage().reference().child("profile_images").child(filename)
             storageRef.putData(uploadData, metadata: nil, completion: { (metadata, err) in
-                
+            
                 if let err = err {
                     print("Failed to upload profile image:", err)
                     return
@@ -139,12 +206,45 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             let userReference = ref.child("users")
             //print(usersReference.description())
             let uid = user.uid
+                    self.passid = uid;
+                    print("passid here")
+                    print(self.passid)
             let newUserReference = userReference.child(uid)
-            newUserReference.setValue(["username":self.usernameTextfield.text!, "email": self.emailTextfield.text!, "ProfileImage": profileImageUrl])
+                    new_user = true; newUserReference.setValue(["username":self.usernameTextfield.text!, "email": self.emailTextfield.text!, "ProfileImage": profileImageUrl,"locationLat": "","locationLong": "", "locationOn": false
+                    
+                        ] , withCompletionBlock: { (error, snapshot) in
+                            if error != nil {
+                                print("oops, an error")
+                            } else {
+                                print("completed")
+                                
+                                self.performSegue(withIdentifier: "signUpSegue", sender: sender);
+                            }
+                    })
+                
                 })
             })
+            
         }
+//        if(new_user==true){
+//            print("WE in here");
+       
+           //self.performSegue(withIdentifier: "signUpSegue", sender: sender);
         
+//        }
+       
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "signUpSegue" {
+//            let vc = HomeViewController();
+//            print("PASSID")
+//            print(self.passid)
+//            vc.passId = self.passid;
+//
+        }
     }
 }//close uiviewcontroller
 

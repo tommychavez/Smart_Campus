@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MESSAGES-->
+        <!--Message View Controller-->
         <scene sceneID="VcK-vr-DNU">
             <objects>
                 <tableViewController id="0ff-Pe-b4l" customClass="MessageViewController" customModule="SmartCampus" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,11 +31,33 @@
                             <outlet property="delegate" destination="0ff-Pe-b4l" id="S3h-Vq-abh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="MESSAGES" id="0oR-U2-jxr"/>
+                    <navigationItem key="navigationItem" id="0oR-U2-jxr">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="KeS-Y9-Dnm">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="xJL-vG-ozU">
+                                <rect key="frame" x="16" y="7" width="317" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Messages (0)"/>
+                                    <segment title="ACTIVITY (0)"/>
+                                    <segment title="REQUESTS (0)"/>
+                                </segments>
+                                <connections>
+                                    <action selector="actionforcontrolbar:" destination="0ff-Pe-b4l" eventType="valueChanged" id="UA7-Ks-otw"/>
+                                    <action selector="topbuttonpush:" destination="0ff-Pe-b4l" eventType="valueChanged" id="Blb-rf-6Ce"/>
+                                </connections>
+                            </segmentedControl>
+                            <connections>
+                                <action selector="topbutton:" destination="0ff-Pe-b4l" id="dco-hn-xkg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="messoractorreq" destination="xJL-vG-ozU" id="5Ux-N6-LAd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uvg-gw-p6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5626" y="-3211"/>
+            <point key="canvasLocation" x="5481" y="-3193"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1XM-LP-ITB">

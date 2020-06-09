@@ -13,23 +13,46 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+//logo stuff
+//https://logomakr.com/989eda
+  
+    
+    var orientationLock = UIInterfaceOrientationMask.all
 
-
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+            return self.orientationLock
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+       
+        
+        
+        
         UITabBar.appearance().tintColor = .black
-
         FirebaseApp.configure()
-        self.splashScreen()
+        //self.splashScreen()
+     
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "GillSans-UltraBold", size: 20)!
+        ]
+        
+        UINavigationBar.appearance().titleTextAttributes = attrs
         return true
     }
+    
     
     private func splashScreen(){
         let launchScreenVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
         let rootVC = launchScreenVC.instantiateViewController(withIdentifier: "splashController")
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
+        
         Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(dimissSplashController), userInfo: nil, repeats: false)
+        
         
     }
     
@@ -63,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
 
 }
 

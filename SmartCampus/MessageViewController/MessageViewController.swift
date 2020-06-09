@@ -15,6 +15,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -26,16 +27,87 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class MessageViewController: UITableViewController {
+
+class MessageViewController: UITableViewController, UITabBarControllerDelegate{
     
     let cellId = "cellId"
+    
+    @IBOutlet weak var messoractorreq: UISegmentedControl!
+    
+    @IBAction func topbuttonpush(_ sender: UISegmentedControl) {
+    tableView.reloadData()
+        print("HERE")
+    }
+    
+    let activityTable: UITableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height));
+    
+    let friendrequestTable: UITableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height));
+   
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        let tabBarIndex = tabBarController.selectedIndex
+        
+        // print(tabBarIndex)
+        
+        if tabBarIndex == 0 {
+            selectedIndex = 1
+            
+        }
+        
+        if tabBarIndex == 1 {
+            
+            // screenShotMethod()
+            selectedIndex = 1
+            
+        }
+        if tabBarIndex == 2 {
+            if(selectedIndex == 3){
+                screenShotMethod()
+            }
+            
+            //shouldbeimage.image = screenshot
+            
+        }
+        
+        if tabBarIndex == 3 {
+            //screenShotMethod()
+            selectedIndex = 3
+            
+        }
+        
+        if tabBarIndex == 4 {
+            // screenShotMethod()
+            selectedIndex = 4
+            
+        }
+    }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
+        selectedIndex = 3
+        self.tabBarController?.delegate = self
+        
+        activityTable.register(UserCell.self, forCellReuseIdentifier: "activityCell")
+        activityTable.delegate = self
+        activityTable.dataSource = self
+        //activityTable.backgroundColor = UIColor.red
+       self.view.addSubview(activityTable)
+        activityTable.isHidden = true
+        
+        friendrequestTable.register(UserCell.self, forCellReuseIdentifier: "friendCell")
+        friendrequestTable.delegate = self
+        friendrequestTable.dataSource = self
+       
+        self.view.addSubview(friendrequestTable)
+        
+       friendrequestTable.isHidden = true
         
         let image = UIImage(named: "new_message_icon")
-        navigationItem.title = "MESSAGES"
+        //navigationItem.title = "MESSAGES"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
         
         checkIfUserIsLoggedIn()
@@ -43,10 +115,98 @@ class MessageViewController: UITableViewController {
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
         observeUserMessages()
+        loadfriendrequests(completion: {
+            message in
+            self.friendrequestTable.reloadData()
+            self.messoractorreq.setTitle("Requests (\(self.friendrequests.count))", forSegmentAt: 2)
+            print("we here a")
+        })
+        loadnotifications(completion: {
+            message in
+            self.activityTable.reloadData()
+            self.messoractorreq.setTitle("Activity (\(self.notiList.count))", forSegmentAt: 1)
+          print("we here b")
+        })
+        print("we here")
+         self.messoractorreq.setTitle("Requests (\(self.friendrequests.count))", forSegmentAt: 2)
+        
+        messoractorreq.setTitle("Messages (0)", forSegmentAt: 0)
+        
+        
+    }
+      let uid = Auth.auth().currentUser?.uid
+    
+     func loadnotifications(completion: @escaping (_ message: String) -> Void){
+        
+        Database.database().reference().child("users").child(uid!).child("notifications").observe(.childAdded, with: { (snapshot) in
+            print("true")
+            
+           let postid2 = snapshot.key
+            Database.database().reference().child("users").child(self.uid!).child("notifications").child(postid2).observe(.childAdded, with: {
+                (snapshot) in
+                let postid = snapshot.key
+                
+            let dictionary = snapshot.value as? [String: Any]
+            var likerArray = [User2]()
+            let userid = dictionary?[ "Userid"] as? String
+            let notiType = dictionary?[ "Notification Type"] as? String
+            let postnumber = dictionary?[ "ID Number"] as? String
+            
+                let post = Post(captionText: "", photoURLString: "", USERNAME: postid, locationText: postnumber!, likes: 0, likedbyme: true, postid: userid!, postcount: 0, Audio64: "", postTime: 0,likerArray: likerArray, likersString: "",numberOfComments: 0, Global: true, postOrEvent: notiType! , timestartstring: "", timeendstring: "", displayname: "", profimg: "", score: 0, spaces: 0)
+            //self.notiList.append(post)
+            self.notiList.insert(post, at: 0)
+            self.fetchUsers(userid: userid!, postid: postid)
+            DispatchQueue.main.async(execute: {
+                completion("done")
+              //  self.activityTable.reloadData()
+            })
+        })
+        })
+    }
+    
+    func fetchUsers(userid: String, postid: String ){
+        Database.database().reference().child("users").child(userid).observeSingleEvent(of: .value, with: { (snapshot) in
+            //print(snapshot.value ?? "")
+            //  let postid = snapshot.key
+            let dictionary = snapshot.value as? [String: Any]
+            
+            let username = dictionary?[ "username"] as? String
+        
+           let myProfilePicture = dictionary?[ "ProfileImage"] as? String
+            
+            if let foo = self.notiList.first(where: { $0.usersName == postid}){
+                foo.usersName = username!
+                foo.imageUrl = myProfilePicture!
+                print("How many times")
+            }
+            
+            
+            DispatchQueue.main.async {
+                //self.ProPic.image = image
+                self.activityTable.reloadData()
+            }
+        })
+    }
+    
+    var notiList = [Post]()
+    
+    func loadfriendrequests(completion: @escaping (_ message: String) -> Void){
+        Database.database().reference().child("users").child(uid!).child("friendRequests").observe(.childAdded, with: { (snapshot) in
+            print("true")
+            print(snapshot.key)
+            self.friendrequests.insert(snapshot.key, at: 0)
+            
+            DispatchQueue.main.async(execute: {
+                completion("done")
+               // self.friendrequestTable.reloadData()
+            })
+        })
     }
     
     var messages = [Message]()
     var messagesDictionary = [String: Message]()
+    
+    var friendrequests: [String] = Array()
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -134,24 +294,219 @@ class MessageViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(tableView == activityTable){
+            return notiList.count
+        }
+        if(tableView == friendrequestTable){
+          //  return 20
+            return friendrequests.count
+        }
+            
+        else{
+        var count = 0
+         if(messoractorreq.selectedSegmentIndex == 0){
         return messages.count
+        }
+        if(messoractorreq.selectedSegmentIndex == 1){
+            return friendrequests.count
+        }
+        if (messoractorreq.selectedSegmentIndex == 2){
+        return friendrequests.count
+        }
+        return count
+        }
+        return 100
     }
     
+    @IBAction func actionforcontrolbar(_ sender: Any) {
+        if(messoractorreq.selectedSegmentIndex == 0){
+           activityTable.isHidden = true
+            friendrequestTable.isHidden = true
+            let image = UIImage(named: "new_message_icon")
+            //navigationItem.title = "MESSAGES"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
+            
+        }
+        if(messoractorreq.selectedSegmentIndex == 1){
+         activityTable.isHidden = false
+            friendrequestTable.isHidden = true
+            navigationItem.rightBarButtonItem = nil
+            //tableView.isHidden  = true
+        }
+        if (messoractorreq.selectedSegmentIndex == 2){
+            activityTable.isHidden = true
+            friendrequestTable.isHidden = false
+            navigationItem.rightBarButtonItem = nil
+            //friendrequestTable.reloadData()
+            //tableView.isHidden = true
+        }
+     
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(tableView == activityTable){
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as! UserCell
+           // cell.textLabel?.text = "activity"
+            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: notiList[indexPath.row].imageUrl)
+            if(notiList[indexPath.row].postorevent == "Like" ){
+            cell.friendLabel
+                .text = "\(notiList[indexPath.row].usersName) liked your post"
+            }
+            if(notiList[indexPath.row].postorevent == "comment" ){
+                cell.friendLabel
+                    .text = "\(notiList[indexPath.row].usersName) commented on your post"
+            }
+            //cell.textLabel?.text = notiList[indexPath.row].postID
+            cell.acceptButton.isHidden = true
+            cell.declineButton.isHidden = true
+            return cell
+        }
+            
+        if(tableView == friendrequestTable){
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as! UserCell
+           
+            cell.buttonAct = { sender in
+                print("DELETE"); Database.database().reference().child("users").child(cell.friendid).child("friendsList").child(self.uid!).setValue(["username": self.uid
+                    ])
+                
+                
+                Database.database().reference().child("users").child(self.uid!).child("friendsList").child( cell.friendid).setValue(["username": cell.friendid
+                    ])
+                Database.database().reference().child("users").child(self.uid!).child("friendRequests").child(cell.friendid).removeValue()
+                self.friendrequests.remove(at: indexPath.row)
+                tableView.reloadData()
+            }
+            Database.database().reference().child("users").child(friendrequests[indexPath.row]).observeSingleEvent(of: .value, with: { (snapshot) in
+                cell.friendid = snapshot.key
+                let dictionary = snapshot.value as? [String: Any];
+                let username = dictionary?[ "username"] as? String;
+                print(username)
+                cell.friendLabel.text = username
+                let url = dictionary?[ "ProfileImage"] as? String;
+                cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: url!)
+            })
+            
+            cell.nameLabel.text = ""
+            cell.friendLabel.isHidden = false
+            //  cell.friendLabel.text = friendrequests[indexPath.row]
+            //friendrequests[indexPath.row]
+            cell.acceptButton.isHidden = false
+            cell.declineButton.isHidden = false
+            cell.profileImageView.isHidden = false
+            cell.profileImageView.image = UIImage(named: "whitesquare")
+            cell.detailTextLabel?.text = ""
+            cell.timeLabel.text = ""
+            navigationItem.setRightBarButton(nil, animated: true)
+            return cell
+        }
+        
+        else {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         
+        if(tableView == activityTable){
+            print("HERE BABY")
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
+            activityTable.delegate = self
+            cell.profileImageView.image = UIImage(named: "whitesquare")
+            return cell
+        }
+        if(messoractorreq.selectedSegmentIndex == 0){
+        
+            cell.acceptButton.isHidden = true
+            cell.friendLabel.isHidden = true
+              cell.declineButton.isHidden = true
+          cell.profileImageView.isHidden = false
         let message = messages[indexPath.row]
         cell.message = message
-
+            
         
+        }
+        if(messoractorreq.selectedSegmentIndex == 1){
+            
+            cell.nameLabel.text = ""
+            cell.acceptButton.isHidden = true
+              cell.friendLabel.isHidden = true
+            cell.declineButton.isHidden = true
+             cell.profileImageView.isHidden = true
+            cell.profileImageView.image = UIImage(named: "whitesquare")
+            cell.detailTextLabel?.text = ""
+            cell.timeLabel.text = ""
+            let image = UIImage(named: "whitesquare")
+            //navigationItem.title = "MESSAGES"
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        
+        
+        
+        if(messoractorreq.selectedSegmentIndex == 2){
+           
+            cell.buttonAct = { sender in
+                print("DELETE"); Database.database().reference().child("users").child(cell.friendid).child("friendsList").updateChildValues(["\(self.uid!)": "1"])
+                Database.database().reference().child("users").child(self.uid!).child("friendsList").updateChildValues(["\( cell.friendid)": "1"])
+                Database.database().reference().child("users").child(self.uid!).child("friendRequests").child(cell.friendid).removeValue()
+                self.friendrequests.remove(at: indexPath.row)
+                tableView.reloadData()
+            }
+            Database.database().reference().child("users").child(friendrequests[indexPath.row]).observeSingleEvent(of: .value, with: { (snapshot) in
+                cell.friendid = snapshot.key
+                let dictionary = snapshot.value as? [String: Any];
+                let username = dictionary?[ "username"] as? String;
+                print(username)
+                 cell.friendLabel.text = username
+                 let url = dictionary?[ "ProfileImage"] as? String;
+                cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: url!)
+            })
+            
+            cell.nameLabel.text = ""
+            cell.friendLabel.isHidden = false
+          //  cell.friendLabel.text = friendrequests[indexPath.row]
+            //friendrequests[indexPath.row]
+            cell.acceptButton.isHidden = false
+            cell.declineButton.isHidden = false
+            cell.profileImageView.isHidden = false
+            cell.profileImageView.image = UIImage(named: "whitesquare")
+            cell.detailTextLabel?.text = ""
+            cell.timeLabel.text = ""
+            navigationItem.setRightBarButton(nil, animated: true)
+        }
+       return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as! UserCell
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(tableView == activityTable){
+            print("im also in here")
+            
+            return 72
+        }
+        if(tableView == friendrequestTable){
+            print("friends:)")
+            
+            return 72
+        }
+            
+        else {
+            return 72
+        }
         return 72
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(tableView == activityTable){
+            if(messoractorreq.selectedSegmentIndex == 1){
+                
+                let vc = OnePostTableViewController()
+                vc.postid = notiList[indexPath.row].location;
+                
+                print(notiList[indexPath.row].location)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        else{
         let message = messages[indexPath.row]
         
         guard let chatPartnerId = message.chatPartnerId() else {
@@ -165,10 +520,15 @@ class MessageViewController: UITableViewController {
             }
             
             let user = User(dictionary: dictionary)
+            
             user.id = chatPartnerId
-            self.showChatControllerForUser(user)
+            let username = dictionary[ "username"] as? String
+            user.name = username; self.showChatControllerForUser(user)
             
         }, withCancel: nil)
+        }
+    
+       
     }
     
     @objc func handleNewMessage() {

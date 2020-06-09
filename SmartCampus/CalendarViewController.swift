@@ -108,6 +108,11 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     var verticalConstraint: NSLayoutConstraint? = nil
     var heightConstraint: NSLayoutConstraint? = nil
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let destVC = segue.destination as! HomeViewController
+        destVC.passedDataString = selectedDate
+        print(selectedDate)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

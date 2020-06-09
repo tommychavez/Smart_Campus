@@ -22,11 +22,21 @@ class NewMessageController: UITableViewController {
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                let user = User(dictionary: dictionary)
-                user.id = snapshot.key
-                self.users.append(user)
                 
-                //this will crash because of background thread, so lets use dispatch_async to fix
+                //id = snapshot.key
+                let dictionary = snapshot.value as? [String: Any]
+                let snapshotkey = snapshot.key
+                let username = dictionary?[ "username"] as? String
+                guard let profileimageURL = dictionary?[ "ProfileImage"] as? String else {return}
+                let user = User(dictionary: dictionary as! [String : AnyObject])
+                user.id = snapshotkey
+                print("name")
+                print(username)
+                user.name = username
+                user.profileImageUrl = profileimageURL
+                
+                
+                self.users.append(user)
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
@@ -49,9 +59,12 @@ class NewMessageController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         
         let user = users[indexPath.row]
-        cell.textLabel?.text = user.name
-        cell.detailTextLabel?.text = user.email
+        //cell.textLabel?.text = user.name
+       // cell.detailTextLabel?.text = user.email
+         cell.detailTextLabel?.text = user.name
         
+        cell.acceptButton.isHidden = true
+        cell.declineButton.isHidden = true
         if let profileImageUrl = user.profileImageUrl {
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
         }
